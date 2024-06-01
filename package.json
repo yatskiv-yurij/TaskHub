@@ -1,0 +1,40 @@
+{
+  "name": "taskhub",
+  "version": "1.0.0",
+  "description": "The server part of the web platform for task management \"TaskHub\"",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write ."
+  },
+  "author": "YurijYatskiv <yurayatskiv07@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.0.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "jwks-rsa": "^3.1.0",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.7",
+    "passport": "^0.7.0",
+    "passport-google-oauth": "^2.0.0",
+    "short-uuid": "^4.2.2",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.1"
+  }
+}
