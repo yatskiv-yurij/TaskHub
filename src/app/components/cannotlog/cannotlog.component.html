@@ -1,0 +1,11 @@
+<p class="not-log__description">Can't log in?</p>
+<form [formGroup]="emailForm" (ngSubmit)="sendMail()" class="log-in__form">
+    <div class="not-log__email-block">
+        <label for="email">We'll send a recovery link to</label>
+        <input formControlName="email" type="text" name="email" class="not-log__email" placeholder="Enter your email">
+    </div>
+    <input type="submit" value="Send recovery link" class="not-log__continue">
+</form>
+<a routerLink="/auth/log-in" class="not-log__log-in">
+    Return to log in
+</a>

@@ -1,0 +1,84 @@
+@import '../../../assets/variable.scss';
+.sprint{
+    position: absolute;
+    margin: 0 5px;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    height: 74%;
+    z-index: 2;
+    background-color: $basic;
+
+    &__fields, &__headers{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__wrapper{
+        padding: 10px 20px 0 20px;
+        background-color: $basic;
+        position: sticky;
+        top: 0px;
+        z-index: 2;
+    }
+
+    &__fields{
+        padding: 0px 20px 20px 20px;
+        min-height: calc(100% - 60px);
+    }
+}
+
+.field__top{
+    width: 30%;
+    border-radius: 20px 20px 0 0 ;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 
+                -2px -2px 5px rgba(0, 0, 0, 0.2), 
+                2px -2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 15px;
+     
+}
+
+.field{
+    width: 30%;
+    min-height: 100%;
+    border-radius: 0 0 20px 20px;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 
+                2px -2px 5px rgba(0, 0, 0, 0.2), 
+                -2px 2px 5px rgba(0, 0, 0, 0.2);
+
+    &__title{
+        font-size: 16px;
+        font-weight: 700;
+        margin-right: 25px;
+    }           
+
+    &__count{
+        font-size: 14px;
+        color: $black;
+        opacity: 60%;
+    }
+}
+
+.line{
+    margin-bottom: 40px;
+}
+
+.not-sprint{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    a{
+        text-decoration: none;
+    }
+}
+

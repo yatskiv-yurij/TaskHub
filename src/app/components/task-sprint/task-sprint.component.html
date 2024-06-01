@@ -1,0 +1,23 @@
+<div class="task" (click)="openEdit($event)">
+    <div class="task__priority" *ngIf="currentBoard?.setColor != 'none'" [style.background-color]="newColor ? newColor : task.priority.color"></div>
+    <div class="task__info">
+        <p class="task__data">{{task.title}}</p>
+        <button (click)="toggleDetail($event)" class="task__additionaly btn btn__small open-dropdown">
+            <svg width="15" height="4" viewBox="0 0 15 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.85681 0C0.830604 0 0 0.830136 0 1.85587C0 2.88161 0.829668 3.71221 1.85681 3.71221C2.88114 3.71221 3.71268 2.88301 3.71268 1.85587C3.71268 0.830136 2.88114 0 1.85681 0ZM7.59616 0C6.5723 0 5.73935 0.829668 5.73935 1.8554C5.73935 2.88114 6.57136 3.71175 7.59616 3.71175C8.62096 3.71175 9.45391 2.88255 9.45391 1.8554C9.45297 0.830135 8.62096 0 7.59616 0ZM13.1446 0C12.1189 0 11.2873 0.830136 11.2873 1.85634C11.2873 2.88114 12.1175 3.71175 13.1446 3.71175C14.1685 3.71175 15 2.88255 15 1.85634C15 0.830136 14.1685 0 13.1446 0Z" fill="#ffffff"/>
+            </svg>
+        </button>
+    </div>
+    <div class="task__detail">
+        <p class="task__label">{{task.label?.title}}</p>
+        <div>
+            <img [src]="'http://localhost:3001'+task.priority?.image" alt="" class="task__priority-image">
+            <img *ngIf="task?.performer?.image.includes('http') || task?.performer?.image.includes('https')" [src]="task?.performer?.image" alt="User" class="task__executant">
+            <img *ngIf="!task?.performer?.image.includes('http') || !task?.performer?.image.includes('https')" [src]="'http://localhost:3001'+task?.performer?.image" alt="User" class="task__executant">
+        </div>
+    </div>
+    <div *ngIf="isDetail" class="dropdown__detail dropdown shadow">
+        <div class="item" (click)="openEdit($event)">Open issue</div>
+        <div class="item" (click)="deleteIssues($event)">Delete issue</div>
+    </div>
+</div>

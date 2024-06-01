@@ -1,0 +1,328 @@
+@import '../../../assets/variable.scss';
+.menu{
+    background-color: $basic;
+    padding: 25px 30px;
+
+    &__content, &__info{
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    &__list{
+        margin-left: 120px;
+    }
+
+    &__link{
+        font-size: 16px;
+        cursor: pointer;
+
+        & + &{
+            margin-left: 60px;
+        }
+
+        svg{
+            pointer-events: none;
+        }
+    }
+
+    &__create{
+        background-color: $main;
+        padding: 6px 22px 9px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    &__info{
+        position: relative;
+    }
+
+    &__search-block{
+        position: relative;
+
+        svg{
+            position: absolute;
+            top: 22px;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .search__data{
+            width: 100%;
+            position: absolute;
+            top: 105%;
+            left: 0;
+            transform: translate(0);
+
+            .item{
+                text-decoration: none;
+                display: block;
+                color: $black;
+                padding: 10px 0 7px;
+                border-bottom: 2px solid #DFE1E6;
+    
+                p{
+                    font-size: 16px;
+                }
+    
+                span{
+                    font-size: 14px;
+                    color: #000000;
+                    opacity: 70%;
+                }
+            }
+        }
+    }
+
+    &__search{
+        width: 250px;
+        padding: 10px 10px 10px 40px;
+        outline: none;
+        border-radius: 15px;
+        border: 1px solid rgba(0,0,0,.5);
+        font-size: 16px;
+    }
+
+    .dropdown{
+        .menu__list{
+            margin: 0;
+        }
+    }
+
+}
+
+.dropdown{
+    &__your-work, &__projects, &__new-project, &__new-board, &__set-project, &__set-board{
+        width: 200px;
+        position: absolute;
+        left: 140px;
+        top: 120%;
+        transform: translate(0);
+        padding: 10px 15px;
+
+        .item{
+            text-decoration: none;
+            display: block;
+            color: $black;
+            padding: 10px 0 7px;
+            border-bottom: 2px solid #DFE1E6;
+
+            p{
+                font-size: 16px;
+            }
+
+            span{
+                font-size: 14px;
+                color: #000000;
+                opacity: 70%;
+            }
+        }
+    }
+
+    &__projects, &__set-project, &__set-board{
+        left: 445px;
+        padding: 0;
+
+        .dropdown__info{
+            padding: 10px 15px 15px;
+            
+        }
+
+        .item{
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+
+            img{
+                width: 25px;
+                height: 25px;
+                border-radius: 6px;
+            }
+
+            p{
+                margin-left: 10px;
+            }
+        }
+
+        button{
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 10px 15px 10px;
+            border-radius: 0 0 10px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+
+    &__your-work{
+        left: 275px;
+    }
+
+    &__set-project, &__set-board{
+        padding: 3px 15px;
+        left: 20px;
+        top: 20%;
+        width: 235px;
+    }
+
+    &__new-project, &__new-board{
+        width: 250px;
+        left: 660px;
+        top: calc(100% + 110px);
+        span{
+            font-size: 13px;
+            color: $black;
+            opacity: 50%; 
+        }
+
+        input{
+            width: 100%;
+            padding: 5px 12px;
+            border: 1px solid $black;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+    }
+
+    &__new-board{
+        top: auto;
+        bottom: 83px;
+        left: 300px
+    }
+
+    &__set-board{
+        top: 37%
+    }
+}
+
+.main{
+    height: calc(100vh - 93px) !important;
+    display: flex;
+}
+
+.sidebar{
+    position: relative;
+    background-color: #fff;
+    width: 330px;
+    height: 100%;
+    box-shadow: 5px 0 4px -2px rgba($color: #000000, $alpha: .07);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    &__top{
+        position: relative;
+    }
+
+    .project__block, .board__block{
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        
+
+        div{
+            display: flex;
+            align-items: center;
+        }
+
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        span{
+            margin-left: 15px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+    }
+
+    .project__block{
+        box-shadow: 0 4px 2px -2px rgba($color: #000000, $alpha: .2);
+        div,img, span,svg{
+            pointer-events: none;
+        }
+    }
+
+    .board__block{
+        span{
+            margin-left: 0px;
+        }
+        div,img, span,svg{
+            pointer-events: none;
+        }
+    }
+
+    &__item{
+        padding: 12px 25px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 2s;
+        text-decoration: none;
+        color: $black;
+
+        span{
+            margin-left: 15px;
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+        svg{
+            width: 28px;
+            height: 28px;
+            transition: all 2s;
+        }
+
+        &:hover{
+            background-color: $main;
+
+            span{
+                color: #fff;
+            }
+
+            svg{
+                fill: #333;
+                
+                .dark{
+                    fill: #fff;
+                    stroke: #fff;
+                }
+
+                .light{
+                    fill: #333;
+                    stroke: #333;
+                }
+            }
+        }
+    }
+
+    &__line{
+        padding: 30px 25px;
+        box-shadow: 0 4px 2px -2px rgba($color: #000000, $alpha: .2), 0 -4px 2px -2px rgba($color: #000000, $alpha: .2);
+        margin-bottom: 20px;
+    }
+    
+
+    &__bottom{
+        padding: 0 0 30px;
+    }
+}
+
+.data{
+    padding: 30px 25px;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+}
+

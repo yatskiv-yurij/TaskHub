@@ -1,0 +1,109 @@
+@import '../../../assets/variable.scss';
+
+.task__wrapper{
+
+    .priority{
+        width: 10px;
+        height: 10px;
+    }
+    
+    .block{
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    span{
+        font-size: 12px;
+        color: lighten($black, 50%);
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input, button{
+        width: 75%;
+        font-size: 14px;
+        padding: 5px 12px;
+        border: 1px solid lighten($black, 50%);
+        outline: none;
+        border-radius: 20px;
+    }
+
+    button{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff;
+        cursor: pointer;
+
+        span{
+            font-size: 14px;
+            color: $black;
+            margin-top: 3px;
+            pointer-events: none;
+        }
+
+        svg{
+            pointer-events: none;
+        }
+
+        div{
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+            img{
+                width: 25px;
+                height: 25px;
+                border-radius: 100%;
+                margin-right: 5px;
+                pointer-events: none;
+            }
+
+            svg{
+                margin-right: 5px;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .NgxEditor__MenuItem.NgxEditor__MenuItem--Icon{
+        width: 15px;
+        height: 15px;
+    }
+
+    .dropdown{
+        top: 100% !important;
+        transform: translate(0);
+        width: 50%;
+
+        .item{
+            padding: 10px 0;
+            border-bottom: 1px solid #DFE1E6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            svg{
+                pointer-events: none;
+                margin-right: 5px;
+                margin-top: 3px;
+            }
+
+            img{
+                width: 25px;
+                height: 25px;
+                border-radius: 100%;
+                pointer-events: none;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.task__save{
+    background-color: $main !important;
+    margin: 0 auto;
+    width: 40% !important;
+    padding: 10px auto !important;
+    font-size: 18px !important;
+    justify-content: center !important;
+}

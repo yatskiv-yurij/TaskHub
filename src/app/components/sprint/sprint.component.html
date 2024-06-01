@@ -1,0 +1,65 @@
+<app-header-backlog *ngIf="headerInfo" [data]="headerInfo"></app-header-backlog>
+<div class="line"></div>
+<div class="sprint">
+    <div class="sprint__wrapper">
+        <div class="sprint__headers">
+            <div class="field__top">
+                <p class="field__title">To execution</p>
+                <span class="field__count">({{execution.length}} issue)</span>
+            </div>
+            <div class="field__top">
+                <p class="field__title">In progress</p>
+                <span class="field__count">({{progress.length}} issue)</span>
+            </div>
+            <div class="field__top">
+                <p class="field__title">Done</p>
+                <span class="field__count">({{done.length}} issue)</span>
+            </div>
+        </div>
+    </div>
+    <div class="sprint__fields" cdkDropListGroup>
+        <div 
+            cdkDropList
+            #executionList="cdkDropList"
+            [cdkDropListData]="execution"
+            class="example-list field"
+            (cdkDropListDropped)="drop($event)">
+            <div *ngIf="sprintData">
+                <div *ngFor="let task of execution" class="example-box" cdkDrag>
+                    <app-task-sprint [task]="task"></app-task-sprint>
+                </div>
+            </div> 
+            <div *ngIf="!sprintData" class="not-sprint">
+                <p>Get started in the backlog</p>
+                <p>Plan and start a sprint to see issues here</p>
+                <a [routerLink]="'/dashboard/'+board?.project?._id+'/'+board?._id+'/backlog'" class="btn backlog">Go to backlog</a>
+            </div>
+        </div>
+        <div 
+            cdkDropList
+            #progressList="cdkDropList"
+            [cdkDropListData]="progress"
+            class="example-list field"
+            (cdkDropListDropped)="drop($event)">
+            <div *ngIf="sprintData">
+                <div *ngFor="let task of progress" class="example-box" cdkDrag>
+                    <app-task-sprint [task]="task"></app-task-sprint>
+                </div>
+            </div>
+        </div>
+        <div
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="done"
+            class="example-list field"
+            (cdkDropListDropped)="drop($event)">
+            <div *ngIf="sprintData">
+                <div *ngFor="let task of done" class="example-box" cdkDrag>
+                    <app-task-sprint [task]="task"></app-task-sprint>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,98 @@
+<div class="modal__task modal">
+    <svg (click)="onCloseModal()" class="modal__close" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 16L16 1M16 16L1 1" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg>
+    <div class="task__wrapper">
+        <div class="task__name-block block">
+            <span>Issue name</span>
+            <input [(ngModel)]="title" type="text" placeholder="Enter issue">
+        </div>
+        <div class="task__project-block block">
+            <span>Project</span>
+            <button (click)="toggleProject()" class="open-dropdown">
+                <span>{{currentProject?.title}}</span>
+                <svg *ngIf="allProject?.length>0" width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div *ngIf="isProject && allProject.length>0" class="dropdown__project dropdown shadow">
+                <div *ngFor="let project of allProject; let i = index" (click)="setProject(i)" class="item">{{project.title}}</div>
+            </div>
+        </div>
+
+        <div class="task__board-block block">
+            <span>Board</span>
+            <button (click)="toggleBoard()" class="open-dropdown">
+                <span>{{currentBoard?.title}}</span>
+                <svg *ngIf="allBoard?.length>0" width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div *ngIf="isBoard && allBoard.length>0" class="dropdown__board dropdown shadow">
+                <div *ngFor="let board of allBoard; let i = index" (click)="setBoard(i)" class="item">{{board.title}}</div>
+            </div>
+        </div>
+
+        <div class="task__status-block block">
+            <span>Status</span>
+            <button (click)="toggleStatus()" class="open-dropdown">
+                <span>{{currentField?.status}}</span>
+                <svg *ngIf="allField?.length>0" width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div *ngIf="isStatus && allField.length>0" class="dropdown__status dropdown shadow">
+                <div *ngFor="let field of allField; let i = index" (click)="setStatus(i)" class="item">{{field.status}}</div>
+            </div>
+        </div>
+        <div class="task__description-block block">
+            <span>Description</span>
+            <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu
+                    [editor]="editor"
+                    [toolbar]="toolbar"
+                    [colorPresets]="colorPresets"
+                >
+                </ngx-editor-menu>
+                <ngx-editor [editor]="editor" [(ngModel)]="html" [disabled]="false" [placeholder]="'Type here description...'"></ngx-editor>
+            </div>
+        </div>
+        <div class="task__assegnee-block block">
+            <span>Assegnee</span>
+            <button (click)="toggleAssegnee()" class="open-dropdown">
+                <div>
+                    <img [src]="currentAssegnee?.image" alt="assegnee">
+                    <span>{{currentAssegnee?.fullname}}</span>
+                </div>
+                <svg *ngIf="allAssegnee?.length>0" width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div *ngIf="isAssegnee && allAssegnee?.length>0" class="dropdown__executant dropdown shadow">
+                <div *ngFor="let assegnee of allAssegnee; let i = index" (click)="setAssegnee(i)" class="item">
+                    <img [src]="assegnee.image" alt="executant">
+                    {{assegnee.fullname}}
+                </div>
+            </div>
+        </div>
+        <div class="task__priority-block block">
+            <span>Priority</span>
+            <button (click)="togglePriority()" class="open-dropdown">
+                <div>
+                    <img [src]="currentPriority?.image" alt="" class="priority">
+                    <span>{{currentPriority?.title}}</span>
+                </div>
+                <svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div *ngIf="isPriority" class="dropdown__priority dropdown shadow">
+                <div *ngFor="let priority of allPriority; let i = index" (click)="setPriority(i)" class="item">
+                    <img [src]="priority?.image" alt="" class="priority">
+                    {{priority.title}}
+                </div>
+            </div>
+        </div>
+        <button (click)="saveIssue()" class="task__save btn">Create</button>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+@import '../../../assets/variable.scss';
+
+.participants{
+    &__route{
+        font-size: 14px;
+        color: $black;
+    }
+
+    &__title{
+        font-size: 22px;
+        font-weight: 700;
+        margin: 20px 0;
+        color: $black;
+    }
+
+    &__invite{
+        font-size: 18px;
+        font-weight: 500;
+        margin: 20px 0;
+
+        &-link{
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+
+            svg{
+                pointer-events: none;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &__join{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    &__search-block{
+        position: relative;
+        margin-bottom: 20px;
+
+        svg{
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__search{
+        width: 200px;
+        padding: 5px 10px 5px 40px;
+        outline: none;
+        border-radius: 15px;
+        border: 1px solid rgba(0,0,0,.5);
+        font-size: 16px;
+    }
+
+    &__item{
+        padding: 10px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid lighten($black, 60%);
+    }
+
+    &__user-block{
+        display: flex;
+        align-items: center;
+
+        img{
+            width: 35px;
+            height: 35px;
+            border-radius: 100%;
+            margin-right: 10px;
+        }
+
+        span{
+            margin-right: 20px;
+        }
+    }
+
+    &__leave{
+        padding: 5px 15px;
+        border-radius: 10px;
+        background-color: #FC3903;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+
+        svg{
+            pointer-events: none;
+            margin-right: 10px;
+        }
+    }
+
+}

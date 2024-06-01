@@ -1,0 +1,23 @@
+@import '../../../assets/variable.scss';
+
+.issues{
+    
+    font-size: 16px;
+    margin-top: 30px;
+    &__data{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 30% repeat(7, calc(70% / 7 - 22px)) 30px;
+        column-gap: 15px;
+        row-gap: 15px;
+        margin: 15px 0;
+    }
+
+}
+
+.line{
+    grid-column: span 9;
+    height: 2px;
+    opacity: 10%;
+    background-color: $black;
+}

@@ -1,0 +1,73 @@
+<app-header-backlog *ngIf="headerInfo" [data]="headerInfo" (createBoard)="handleCreateSprint()"></app-header-backlog>
+<div cdkDropListGroup>
+    <div class="sprint" *ngIf="sprintData">
+        <div class="sprint__top">
+            <div>
+                <h5 class="sprint__title">{{sprintData?.title}}</h5>
+                <span class="sprint__count">({{sprint.length}} issues)</span>
+            </div>
+            <div class="sprint__detail">
+                <button *ngIf="sprintData.status == 'create'" class="sprint__start btn btn__green" (click)="startSprint()">Start sprint</button>
+                <button *ngIf="sprintData.status == 'start'" class="sprint__start btn btn__green" (click)="completeSprint()">Сomplete sprint</button>
+                <button (click)="toggleDetail()" class="sprint__dots btn open-dropdown">
+                    <svg width="20" height="5" viewBox="0 0 20 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.47574 0C1.10747 0 0 1.10685 0 2.4745C0 3.84215 1.10622 4.94962 2.47574 4.94962C3.84152 4.94962 4.95024 3.84402 4.95024 2.4745C4.95024 1.10685 3.84152 0 2.47574 0ZM10.1282 0C8.76306 0 7.65247 1.10622 7.65247 2.47387C7.65247 3.84152 8.76182 4.94899 10.1282 4.94899C11.4946 4.94899 12.6052 3.84339 12.6052 2.47387C12.604 1.10685 11.4946 0 10.1282 0ZM17.5261 0C16.1585 0 15.0498 1.10685 15.0498 2.47512C15.0498 3.84152 16.1566 4.94899 17.5261 4.94899C18.8913 4.94899 20 3.84339 20 2.47512C20 1.10685 18.8913 0 17.5261 0Z" fill="#fff"/>
+                    </svg>
+                </button>
+                <div *ngIf="isDetail" class="dropdown__detail dropdown shadow">
+                    <div class="item" (click)="createNewSprint()">Edit sprint</div>
+                    <div class="item" (click)="deleteSprint()" >Delete sprint</div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            cdkDropList
+            #sprintList="cdkDropList"
+            [cdkDropListData]="sprint"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let task of sprint" class="example-box" cdkDrag>
+                <app-task-backlog [task]="task"></app-task-backlog>
+            </div>
+        </div>    
+    </div>
+    <div class="backlog">
+        <div class="backlog__top">
+            <div>
+                <h5 class="backlog__title">Backlog</h5>
+                <span class="backlog__count">({{backlog.length}} issues)</span>
+            </div>
+        </div>
+        <div
+        cdkDropList
+        #backlogList="cdkDropList"
+        [cdkDropListData]="backlog"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let task of backlog" class="example-box" cdkDrag>
+                <app-task-backlog [task]="task"></app-task-backlog>
+            </div>
+        
+        </div>
+
+        <div *ngIf="isNewIssues" class="backlog__new-task open-dropdown">
+            <input class="open-dropdown" type="text" [(ngModel)]="newIssuesTitle" name="new-task" placeholder="What needs to be done?" (keydown.enter)="newIssues()">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 16L16 1M16 16L1 1" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <button (click)="toggleNewIssues()" *ngIf="!isNewIssues" class="backlog__bottom open-dropdown">
+            <svg (click)="toggleNewIssues()" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.25 0.75C8.25 0.551088 8.17098 0.360322 8.03033 0.21967C7.88968 0.0790178 7.69891 0 7.5 0C7.30109 0 7.11032 0.0790178 6.96967 0.21967C6.82902 0.360322 6.75 0.551088 6.75 0.75V6.75H0.75C0.551088 6.75 0.360322 6.82902 0.21967 6.96967C0.0790178 7.11032 0 7.30109 0 7.5C0 7.69891 0.0790178 7.88968 0.21967 8.03033C0.360322 8.17098 0.551088 8.25 0.75 8.25H6.75V14.25C6.75 14.4489 6.82902 14.6397 6.96967 14.7803C7.11032 14.921 7.30109 15 7.5 15C7.69891 15 7.88968 14.921 8.03033 14.7803C8.17098 14.6397 8.25 14.4489 8.25 14.25V8.25H14.25C14.4489 8.25 14.6397 8.17098 14.7803 8.03033C14.921 7.88968 15 7.69891 15 7.5C15 7.30109 14.921 7.11032 14.7803 6.96967C14.6397 6.82902 14.4489 6.75 14.25 6.75H8.25V0.75Z" fill="black"/>
+            </svg>
+            Create issues
+        </button>
+    </div>
+</div>
+
+<div class="overlay" [ngClass]="{'active': isNewSprint}"></div>
+
+<app-new-sprint *ngIf="isNewSprint" [sprint]="sprintData" (closeEdit)="closeNewSprint()" (createBoard)="handleCreateSprint()"></app-new-sprint>
+
+<router-outlet></router-outlet>

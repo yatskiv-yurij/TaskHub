@@ -1,0 +1,164 @@
+@import '../../../assets/variable.scss';
+.settings{
+    &__title{
+        font-size: 22px;
+        font-weight: 700;
+        margin: 30px 0;
+        color: $black;
+    }
+
+    &__subtitle{
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    &__description{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    &__delete{
+        display: flex;
+        align-items: center;
+
+        svg{
+            pointer-events: none;
+            margin-right: 5px;
+        }
+    }
+
+    &__image-block{
+        position: relative;
+        margin-bottom: 20px;
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+        }
+    }
+
+    &__change-img{
+        position: absolute;
+        bottom: 0;
+        left: 70px;
+        background-color: lighten($main, 20);
+    }
+
+    &__full-name, &__user-name, &__notification, &__current-password{
+        margin-bottom: 20px;
+        position: relative;
+        span{
+            font-size: 12px;
+            color: lighten($black, 50%);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, button{
+            width: 20%;
+            padding: 5px 12px;
+            border: 1px solid lighten($black, 50%);
+            border-radius: 20px;
+            outline: none;
+            background-color: #fff;
+        }
+
+        button{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            div{
+                display: flex;
+            }
+
+            span,svg{
+                pointer-events: none;
+            }
+
+            span{
+                color: $black;
+                font-size: 14px;
+                margin-top: 3px;
+            }
+        }
+    }
+
+    &__notification-other{
+        font-size: 14px;
+        margin-top: 20px;
+        color: lighten($black, $amount: 30)
+    }
+
+    &__current-password{
+        .settings__password{
+            position: relative;
+
+            label{
+                position: absolute;
+                top: 3px;
+                left: calc(20% - 30px);
+            }
+        }
+    }
+
+    
+
+    &__new-password{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .item{
+            width: 20%;
+            span{
+                font-size: 12px;
+                color: lighten($black, 50%);
+                margin-bottom: 5px;
+                display: block;
+            }
+    
+            input{
+                width: 100%;
+                padding: 5px 12px;
+                border: 1px solid lighten($black, 50%);
+                border-radius: 20px;
+                outline: none;
+                background-color: #fff;
+                display: block;
+            }
+
+            .settings__password{
+                position: relative;
+
+                label{
+                    position: absolute;
+                    left: calc(100% - 30px);
+                    top: 3px;
+                }
+            }
+        }
+    }
+
+    &__password-save{
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+
+        svg{
+            pointer-events: none;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    }
+    
+}
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: lighten($black, 60%);
+    margin-bottom: 20px;
+}

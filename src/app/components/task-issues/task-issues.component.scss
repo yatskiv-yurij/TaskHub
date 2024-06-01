@@ -1,0 +1,67 @@
+@import '../../../assets/variable.scss';
+
+.issues{
+    
+    font-size: 16px;
+
+    &__data{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 30% repeat(7, calc(70% / 7 - 22px)) 30px;
+        column-gap: 15px;
+        row-gap: 15px;
+        margin: 15px 0;
+    }
+
+    &__assignee, &__reporter, &__priority{
+        display: flex;
+        align-items: center;
+
+        span{
+            margin-left: 5px;
+        }
+    }
+
+    &__priority{
+        img{
+            width: 20px;
+        }
+    }
+    &__user{
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
+
+    &__status {
+        padding: 5px 15px;
+        width: max-content;
+
+        &.green{
+            background-color: $additional;
+            color:#fff;
+            border-radius: 10px;
+        }
+    }
+
+    &__additionaly{
+        position: relative;
+    }
+}
+
+
+.dropdown{
+    &__detail{
+        top: 150%;
+        right: 0px;
+        transform: translate(0);
+        display: block;
+        width: 120px;
+
+        .item{
+            padding: 10px 0;
+            border-bottom: 1px solid #DFE1E6;
+            cursor: pointer;
+        }
+    }
+}

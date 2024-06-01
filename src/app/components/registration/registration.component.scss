@@ -1,0 +1,119 @@
+@import '../../../assets/variable.scss';
+
+.sign-up{
+    &__description{
+        font-size: 16px;
+        font-weight: 500;
+        margin: 20px 0 15px 0;
+    }
+
+    &__email, &__name, &__password{
+        margin-bottom: 8px;
+        display: block;
+        width: 320px !important;
+        font-size: 14px;
+        padding: 12px;
+        border: 2px solid #DFE1E6;
+        border-radius: 4px;
+        outline: none;
+
+        &::placeholder{
+            font-size: 14px;
+            color: #6B778C;
+        }
+
+        &:focus{
+            border: 2px solid darken(#2684FF, 20);
+        }
+    }
+
+    &__name{
+        margin-bottom: 15px;
+    }
+
+    &__text{
+        max-width: 320px;
+        text-align: left;
+        font-size: 12px;
+        color: #5E6C84;
+        margin-bottom: 10px;
+
+        a{
+            text-decoration: none;
+            color: #0052CC;
+        }
+    }
+
+    &__continue{
+        width: 100%;
+        padding: 12px 0;
+        background-color: #2684FF;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    &__or{
+        color: #5E6C84;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 25px 0 15px 0;
+    }
+
+    &__log-in{
+        text-decoration: none;
+        color:#0052CC;
+        cursor: pointer;
+    }
+
+    &__email-block{
+        text-align: left;
+
+        span{
+            font-size: 12px;
+            color: #6B778C;
+            display: block;
+        }
+    }
+
+    &__your-email{
+        font-size: 16px !important;
+        font-weight: 700;
+        color: #172B4D !important;
+        margin: 3px 0 15px;
+    }
+
+    &__password-block{
+        position: relative;
+
+        label{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-60%);
+            cursor: pointer;
+        }
+    }
+
+    &__check{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+
+        .progress{
+            width: 23%;
+            height: 2px;
+            border-radius: 2px;
+            background-color: red;
+
+            
+        }
+
+        .green{
+            background-color: greenyellow;
+        }
+    }
+}

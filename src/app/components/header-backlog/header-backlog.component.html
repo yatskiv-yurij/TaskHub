@@ -1,0 +1,123 @@
+<p class="backlog__route">{{data?.route}}</p>
+<h3 class="backlog__title">{{data?.title}}</h3>
+<div class="backlog__filters">
+    <div class="backlog__filters_items">
+        <div class="backlog__search-block">
+            <input type="text" class="backlog__search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.51086 0C3.81085 0 0 3.81001 0 8.51086C0 13.2109 3.81001 17.0217 8.51086 17.0217C10.4745 17.0247 12.3782 16.3458 13.8967 15.1009L18.5467 19.7509C18.7063 19.9106 18.9228 20.0003 19.1485 20.0004C19.3743 20.0005 19.5908 19.9109 19.7505 19.7513C19.9102 19.5917 19.9999 19.3753 20 19.1495C20.0001 18.9238 19.9105 18.7072 19.7509 18.5476L15.1009 13.8975C16.3459 12.3788 17.0249 10.4747 17.0217 8.51086C17.0209 3.81085 13.21 0 8.51086 0ZM1.70251 8.51086C1.70251 6.70517 2.41981 4.97344 3.69663 3.69663C4.97344 2.41981 6.70517 1.70251 8.51086 1.70251C10.3166 1.70251 12.0483 2.41981 13.3251 3.69663C14.6019 4.97344 15.3192 6.70517 15.3192 8.51086C15.3192 10.3166 14.6019 12.0483 13.3251 13.3251C12.0483 14.6019 10.3166 15.3192 8.51086 15.3192C6.70517 15.3192 4.97344 14.6019 3.69663 13.3251C2.41981 12.0483 1.70251 10.3166 1.70251 8.51086Z" fill="black" fill-opacity="0.5"/>
+            </svg>
+        </div>
+
+        <button (click)="toggleLabel()" class="backlog__filter_item open-dropdown">
+            Label
+            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7.5 7L14 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button (click)="togglePriority()" class="backlog__filter_item open-dropdown">
+            Priority
+            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7.5 7L14 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button (click)="toggleExecutant()" class="backlog__filter_item open-dropdown">
+            Executant
+            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7.5 7L14 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button *ngIf="issues" (click)="toggleStatus()" class="backlog__filter_item open-dropdown">
+            Status
+            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7.5 7L14 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button *ngIf="issues" (click)="toggleResolution()" class="backlog__filter_item open-dropdown">
+            Resolution
+            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7.5 7L14 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="btn backlog__clear" *ngIf="resolution.length>0 || status.length>0 || priorityData.length>0 || labels.length>0 || executants.length>0" (click)="clean()">
+            Clean filter
+        </button>
+    </div>
+    <div *ngIf="backlog || sprint" class="backlog__filters_items">
+        <button (click)="toggleShare()"  class="backlog__share open-dropdown">
+            <svg width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.6215 15.7912C16.2936 15.7912 15.1452 16.3654 14.3556 17.2985L8.25449 14.1403C8.5416 13.5661 8.68515 12.9201 8.68515 12.2382C8.68515 11.5563 8.50571 10.9103 8.25449 10.3361L14.3556 7.17781C15.1452 8.11093 16.3295 8.68515 17.6215 8.68515C19.9902 8.68515 21.9641 6.74714 21.9641 4.34258C21.9641 1.9739 20.0261 0 17.6215 0C15.217 0 13.279 2.04568 13.279 4.41436C13.279 4.98858 13.3866 5.49103 13.5661 5.99347L7.35726 9.1876C6.5677 8.39804 5.49103 7.93148 4.30669 7.93148C1.9739 7.93148 0 9.90538 0 12.2741C0 14.6427 1.93801 16.6166 4.34258 16.6166C5.52692 16.6166 6.60359 16.1501 7.39315 15.3605L13.602 18.5546C13.4225 19.0571 13.3148 19.5595 13.3148 20.1338C13.3148 22.5024 15.2529 24.4763 17.6574 24.4763C20.062 24.4763 22 22.5383 22 20.1338C22 17.7292 19.9902 15.7912 17.6215 15.7912ZM17.6215 1.54323C19.2007 1.54323 20.5285 2.83524 20.5285 4.45024C20.5285 6.02936 19.2365 7.35726 17.6215 7.35726C16.0065 7.35726 14.7145 6.02936 14.7145 4.41436C14.7145 2.83524 16.0065 1.54323 17.6215 1.54323ZM4.34258 15.1811C2.76346 15.1811 1.43556 13.8891 1.43556 12.2741C1.43556 10.6949 2.72757 9.36705 4.34258 9.36705C5.9217 9.36705 7.24959 10.6591 7.24959 12.2741C7.24959 13.8532 5.9217 15.1811 4.34258 15.1811ZM17.6215 23.0049C16.0424 23.0049 14.7145 21.7129 14.7145 20.0979C14.7145 18.4829 16.0065 17.1909 17.6215 17.1909C19.2365 17.1909 20.5285 18.4829 20.5285 20.0979C20.5285 21.7129 19.2007 23.0049 17.6215 23.0049Z" fill="#333333"/>
+            </svg>
+        </button>
+        <button *ngIf="backlog && !isSprint" (click)="createNewSprint()"  class="backlog__new-sprint btn">
+            Create sprint
+        </button>
+        <div *ngIf="isShare" class="dropdown__share dropdown shadow">
+            <input type="text" name="email" placeholder="Participant's email" class="open-dropdown" [(ngModel)]="participantEmail">
+            <div>
+                <button (click)="copyLink()" class="link">Copy link</button>
+                <button  class="Add btn" (click)="toInvite()">Add</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div *ngIf="isLabel && allLabels?.length>0" class="dropdown__label dropdown shadow">
+        <div class="item inside" *ngFor="let label of allLabels; let i = index">
+            <input type="checkbox" name="label" [id]="'label'+ (i+1)" class="inside" (click)="setLabel(label?._id)" [checked]="labels.includes(label?._id)">
+            <label [for]="'label'+ (i+1)" class="inside">{{label?.title}}</label>
+        </div>
+    </div>
+
+    <div *ngIf="isPriority" class="dropdown__priority dropdown shadow">
+        <div class="item inside" *ngFor="let priority of allPriority; let i = index">
+            <input type="checkbox" name="priority" [id]="'priority'+(i+1)" class="inside" (click)="setPriority(priority?._id)" [checked]="priorityData.includes(priority?._id)">
+            <label [for]="'priority'+(i+1)" class="inside">
+                <img class="priority" [src]="'http://localhost:3001'+priority?.image" alt="priority">
+                {{priority?.title}}
+            </label>
+        </div>
+    </div>
+
+    <div *ngIf="isExecutant" class="dropdown__executant dropdown shadow">
+        <div class="item inside" *ngFor="let executant of allExecutant; let i = index">
+            <input type="checkbox" name="executant" [id]="'executant'+(i+1)" class="inside" (click)="setExecutant(executant?._id)" [checked]="executants.includes(executant._id)">
+            <label [for]="'executant'+(i+1)" class="inside" >
+                <img *ngIf="executant?.image?.includes('http') || executant?.image?.includes('https')" [src]="executant?.image" alt="User">
+                <img *ngIf="!executant?.image?.includes('http') || !executant?.image?.includes('https')" [src]="'http://localhost:3001'+executant?.image" alt="User">
+                {{executant?.fullname}}
+            </label>
+        </div>
+    </div>
+
+    <div *ngIf="isStatus" class="dropdown__status dropdown shadow">
+        <div class="item inside">
+            <input type="checkbox" name="status" id="status1" class="inside" (click)="setStatus(1)" [checked]="status.includes(1)">
+            <label for="status1" class="inside">To execute</label>
+        </div>
+        <div class="item inside">
+            <input type="checkbox" name="status" id="status2" class="inside" (click)="setStatus(2)" [checked]="status.includes(2)">
+            <label for="status2" class="inside">In progress</label>
+        </div>
+        <div class="item inside">
+            <input type="checkbox" name="status" id="status3" class="inside" (click)="setStatus(3)" [checked]="status.includes(3)">
+            <label for="status3" class="inside">Done</label>
+        </div>
+    </div>
+
+    <div *ngIf="isResolution" class="dropdown__resolution dropdown shadow">
+        <div class="item inside">
+            <input type="checkbox" name="resolution" id="resolution1" class="inside" (click)="setResolution(1)" [checked]="resolution.includes(1)">
+            <label for="resolution1" class="inside">Unresolved</label>
+        </div>
+        <div class="item inside">
+            <input type="checkbox" name="resolution" id="resolution2" class="inside"(click)="setResolution(2)" [checked]="resolution.includes(2)">
+            <label for="resolution2" class="inside">Resolved</label>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" [ngClass]="{'active': isNewSprint}"></div>
+
+<app-new-sprint *ngIf="isNewSprint" (closeEdit)="closeNewSprint()" [board]="boardId" (createBoard)="handleCreateSprint()"></app-new-sprint>
+

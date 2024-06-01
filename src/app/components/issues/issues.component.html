@@ -1,0 +1,38 @@
+<app-header-backlog *ngIf="headerInfo" [data]="headerInfo"></app-header-backlog>
+<div class="issues">
+    <div class="issues__data">
+        <p class="issues__summary">Summary</p>
+        <p class="issues__assignee">Assignee</p>
+        <p class="issues__reporter">Reporter</p>
+        <p class="issues__priority">Priority</p>
+        <p class="issues__status">Status</p>
+        <p class="issues__resolution">Resolution</p>
+        <p class="issues__created">Created</p>
+        <p class="issues__update">Update</p>
+        <p class="issues__additionaly"></p>
+    </div>
+    
+
+    <div *ngFor="let task of tasksData.slice(currentPage*7, (currentPage+1)*7)">
+        <div class="line"></div>
+        <app-task-issues [task]="task"></app-task-issues>
+    </div>
+    <div class="line"></div>
+</div>
+
+<div class="pagination" *ngIf="countPage>0">
+    <button class="pagination__start pagination__btn" [attr.disabled]="currentPage == 0 ? true : null" [ngClass]="{'disable': currentPage == 0 }"  (click)="back()">
+        <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.15991 1.41L3.57991 6L8.15991 10.59L6.74991 12L0.749912 6L6.74991 0L8.15991 1.41Z" fill="#C4CDD5"/>
+        </svg>
+    </button>
+
+    <button *ngFor="let _ of counterArray(countPage); let i = index" class="pagination__page pagination__btn" [ngClass]="{'active': currentPage == i}" [id]='i+1' (click)="setPage(i)">{{i+1}}</button>
+    <button class="pagination__end pagination__btn" [attr.disabled]="currentPage == countPage-1 ? true : null" [ngClass]="{'disable': currentPage == countPage-1}" (click)="next()">
+        <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.840088 1.41L5.42009 6L0.840088 10.59L2.25009 12L8.25009 6L2.25009 0L0.840088 1.41Z" fill="#C4CDD5"/>
+        </svg>
+    </button>
+</div>
+
+<router-outlet></router-outlet>

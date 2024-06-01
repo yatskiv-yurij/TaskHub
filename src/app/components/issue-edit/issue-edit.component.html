@@ -1,0 +1,186 @@
+<div class="overlay active"></div>
+<div class="modal__issue modal">
+    <svg (click)="onCloseModal()" class="modal__close" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 16L16 1M16 16L1 1" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg>
+
+    <div class="issue__left">
+        <div class="issue__title-block">
+            <h3 *ngIf="!changeTitle" (click)="toggleTitle()" class="issue__title">{{taskTitle}}</h3>
+            <div *ngIf="changeTitle">
+                <input type="text" class="issue__edit-title" [(ngModel)]="taskTitle">
+                <button (click)="toggleTitle(); setTitle()" class="issue__save btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.325 5.19127C17.382 5.25036 17.4267 5.3201 17.4567 5.39649C17.4868 5.47288 17.5014 5.55444 17.4999 5.63651C17.4984 5.71857 17.4808 5.79953 17.448 5.87477C17.4152 5.95001 17.3679 6.01806 17.3088 6.07502L8.87126 14.2C8.75478 14.3123 8.5993 14.375 8.43751 14.375C8.27573 14.375 8.12024 14.3123 8.00376 14.2L3.94126 10.2881C3.88217 10.2312 3.83487 10.1631 3.80207 10.0879C3.76927 10.0127 3.75161 9.9317 3.75011 9.84963C3.74706 9.6839 3.80997 9.52374 3.92501 9.40439C4.04005 9.28504 4.19779 9.21628 4.36352 9.21324C4.52926 9.21019 4.68941 9.2731 4.80876 9.38814L8.43751 12.8819L16.4413 5.17502C16.5004 5.11805 16.5701 5.07329 16.6465 5.04328C16.7229 5.01327 16.8044 4.9986 16.8865 5.00011C16.9686 5.00161 17.0495 5.01927 17.1248 5.05207C17.2 5.08487 17.2681 5.13217 17.325 5.19127Z" fill="#fff"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="issue__description-block">
+            <div *ngIf="!changeDescription" (click)="toggleDescription()" class="issue__description" [innerHTML]="description"></div>
+            <div *ngIf="changeDescription" class="issue__description-wrapper">
+                <div class="NgxEditor__Wrapper">
+                    <ngx-editor-menu
+                        [editor]="editorDescriprion"
+                        [toolbar]="toolbar"
+                        [colorPresets]="colorPresets"
+                    >
+                    </ngx-editor-menu>
+                    <ngx-editor [editor]="editorDescriprion" [(ngModel)]="description" [disabled]="false" [placeholder]="'Type here description...'"></ngx-editor>
+                </div>
+                <button (click)="setDescription(); toggleDescription()" class="issue__save btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.325 5.19127C17.382 5.25036 17.4267 5.3201 17.4567 5.39649C17.4868 5.47288 17.5014 5.55444 17.4999 5.63651C17.4984 5.71857 17.4808 5.79953 17.448 5.87477C17.4152 5.95001 17.3679 6.01806 17.3088 6.07502L8.87126 14.2C8.75478 14.3123 8.5993 14.375 8.43751 14.375C8.27573 14.375 8.12024 14.3123 8.00376 14.2L3.94126 10.2881C3.88217 10.2312 3.83487 10.1631 3.80207 10.0879C3.76927 10.0127 3.75161 9.9317 3.75011 9.84963C3.74706 9.6839 3.80997 9.52374 3.92501 9.40439C4.04005 9.28504 4.19779 9.21628 4.36352 9.21324C4.52926 9.21019 4.68941 9.2731 4.80876 9.38814L8.43751 12.8819L16.4413 5.17502C16.5004 5.11805 16.5701 5.07329 16.6465 5.04328C16.7229 5.01327 16.8044 4.9986 16.8865 5.00011C16.9686 5.00161 17.0495 5.01927 17.1248 5.05207C17.2 5.08487 17.2681 5.13217 17.325 5.19127Z" fill="#fff"/>
+                    </svg>
+                </button>
+            </div>
+            
+        </div>
+        <div class="issue__attachments">
+            <div class="issue__attachments-title">
+                <p>Attachments</p>
+                <input type="file" #fileInput style="display: none;" (change)="saveFile($event)">
+                <button class="issue__add btn" (click)="selectFile()">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.66667 5.33334V0.662003C6.66596 0.485838 6.59535 0.317159 6.47035 0.193028C6.34534 0.0688982 6.17617 -0.000528475 6 3.0294e-06C5.62934 3.0294e-06 5.33334 0.29667 5.33334 0.662003V5.33334H0.662003C0.485838 5.33404 0.317159 5.40466 0.193028 5.52966C0.0688982 5.65467 -0.000528475 5.82384 3.0294e-06 6C3.0294e-06 6.37134 0.29667 6.66667 0.662003 6.66667H5.33334V11.338C5.33334 11.7033 5.632 12 6 12C6.37067 12 6.66667 11.7033 6.66667 11.338V6.66667H11.338C11.5142 6.66596 11.6828 6.59535 11.807 6.47035C11.9311 6.34534 12.0005 6.17617 12 6C12 5.62934 11.7033 5.33334 11.338 5.33334H6.66667Z" fill="#ffffff"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="issue__attachments-grid">
+                <div class="item" *ngFor="let attachment of allAttachment; let i = index">
+                    <div class="issue__attachments-file">
+                        <img *ngIf="attachment?.extension == 'docx'" src="./assets/images/docx.png" alt="Docx" class="issue__file-image">
+                        <img *ngIf="attachment?.extension == 'xlsx'" src="./assets/images/excel.png" alt="Docx" class="issue__file-image">
+                        <img *ngIf="attachment?.extension == 'pptx'" src="./assets/images/power_point.png" alt="Docx" class="issue__file-image">
+                        <img *ngIf="attachment?.extension == 'pdf'" src="./assets/images/pdf.png" alt="Docx" class="issue__file-image">
+                        <img *ngIf="attachment?.extension == 'jpg' || attachment?.extension == 'jpeg' || attachment?.extension == 'png' || attachment?.extension == 'svg'" [src]="'http://localhost:3001'+attachment?.link" alt="Docx" class="issue__file-image image">
+                    </div>
+                    <div class="issue__attachments-content">
+                        <p class="issue__attachments-name">{{attachment?.name}}.{{attachment?.extension}}</p>
+                        <p class="issue__attachments-date">{{setDate(attachment?.createdAt)}}</p>
+                    </div>
+                    <a [href]="'http://localhost:3001'+attachment?.link" class="issue__attachments-download btn btn__green">
+                        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12V19M12 19L9.75 16.6667M12 19L14.25 16.6667M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <button class="issue__attachments-delete btn btn__red" (click)="deleteAttachment(i)">
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" width="30px" height="30px">
+                            <path fill="#fff" d="M 28 7 C 25.243 7 23 9.243 23 12 L 23 15 L 13 15 C 11.896 15 11 15.896 11 17 C 11 18.104 11.896 19 13 19 L 15.109375 19 L 16.792969 49.332031 C 16.970969 52.510031 19.600203 55 22.783203 55 L 41.216797 55 C 44.398797 55 47.029031 52.510031 47.207031 49.332031 L 48.890625 19 L 51 19 C 52.104 19 53 18.104 53 17 C 53 15.896 52.104 15 51 15 L 41 15 L 41 12 C 41 9.243 38.757 7 36 7 L 28 7 z M 28 11 L 36 11 C 36.552 11 37 11.449 37 12 L 37 15 L 27 15 L 27 12 C 27 11.449 27.448 11 28 11 z M 19.113281 19 L 44.886719 19 L 43.212891 49.109375 C 43.153891 50.169375 42.277797 51 41.216797 51 L 22.783203 51 C 21.723203 51 20.846109 50.170328 20.787109 49.111328 L 19.113281 19 z M 32 23.25 C 31.033 23.25 30.25 24.034 30.25 25 L 30.25 45 C 30.25 45.966 31.033 46.75 32 46.75 C 32.967 46.75 33.75 45.966 33.75 45 L 33.75 25 C 33.75 24.034 32.967 23.25 32 23.25 z M 24.642578 23.251953 C 23.677578 23.285953 22.922078 24.094547 22.955078 25.060547 L 23.652344 45.146484 C 23.685344 46.091484 24.462391 46.835938 25.400391 46.835938 C 25.421391 46.835938 25.441891 46.835938 25.462891 46.835938 C 26.427891 46.801938 27.183391 45.991391 27.150391 45.025391 L 26.453125 24.939453 C 26.419125 23.974453 25.606578 23.228953 24.642578 23.251953 z M 39.355469 23.251953 C 38.388469 23.224953 37.580875 23.974453 37.546875 24.939453 L 36.849609 45.025391 C 36.815609 45.991391 37.571109 46.801938 38.537109 46.835938 C 38.558109 46.836938 38.578609 46.835938 38.599609 46.835938 C 39.537609 46.835938 40.314656 46.091484 40.347656 45.146484 L 41.044922 25.060547 C 41.078922 24.094547 40.321469 23.285953 39.355469 23.251953 z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div> 
+
+        <div class="issue__comments">
+            <p class="issue__comments-title">Comments</p>
+            <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu
+                    [editor]="editorComment"
+                    [toolbar]="toolbar"
+                    [colorPresets]="colorPresets"
+                >
+                </ngx-editor-menu>
+                <ngx-editor [editor]="editorComment" [(ngModel)]="comment" [disabled]="false" [placeholder]="'Type here your comment...'"></ngx-editor>
+            </div>
+            
+            <button class="btn issue__comments-send" (click)="createComment()">Send a comment</button>
+            <div class="comment" *ngFor="let comment of allComments | keyvalue">
+                <img *ngIf="comment.value.user.image.includes('http') || comment.value.user.image.includes('https')" [src]="comment.value.user.image" alt="User">
+                <img *ngIf="!comment.value.user.image.includes('http') || !comment.value.user.image.includes('https')" [src]="'http://localhost:3001'+comment.value.user.image" alt="User" >
+                
+                <div class="comment__content">
+                    <div>
+                        <span class="comment__user-name">{{comment.value.user.fullname}}</span>
+                        <span class="comment__date">{{minDate(comment.value.createdAt)}}</span>
+                    </div>
+                    <div class="comment__text" [innerHTML]="comment.value.data"></div>
+                    <button *ngIf="comment.value.user._id == userId" class="comment__delete" (click)="deleteComment(comment.value._id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="issue__right">
+        <div class="settings">
+            <div class="setting">
+                <span class="setting__category">Field</span>
+                <span (click)="toggleField()" class="setting__value open-dropdown">{{currentField?.status}}</span>
+                <div *ngIf="isField && allField.length>0" class="dropdown__field dropdown shadow">
+                    <div class="item" *ngFor="let field of allField; let i = index" (click)="setField(i)">{{field.status}}</div>
+                </div>
+            </div>
+    
+            <div class="setting">
+                <span class="setting__category">Priority</span>
+                <span (click)="togglePriority()" class="setting__value open-dropdown">
+                    <img [src]="'http://localhost:3001'+currentPriority?.image" alt="" class="setting__img-priority">
+                    <span>{{currentPriority?.title}}</span>
+                </span>
+                <div *ngIf="isPriority&& allPriority?.length>0" class="dropdown__field dropdown shadow">
+                    <div class="item" *ngFor="let priority of allPriority; let i = index" (click)="setPriority(i)">
+                        <img [src]="'http://localhost:3001'+priority.image" alt="" class="setting__img-priority">
+                        <span>{{priority.title}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line"></div>
+    
+            <div class="setting">
+                <span class="setting__category">Executant</span>
+                <span (click)="toggleExecutant()" class="setting__value open-dropdown">
+                    <img *ngIf="currentExecutant?.image.includes('http') || currentExecutant?.image.includes('https')" [src]="currentExecutant?.image" alt="User">
+                    <img *ngIf="!currentExecutant?.image.includes('http') || !currentExecutant?.image.includes('https')" [src]="'http://localhost:3001'+currentExecutant?.image" alt="User" >
+                    <span>{{currentExecutant?.fullname}}</span>
+                </span>
+                <div *ngIf="isExecutant && allExecutant.length>0" class="dropdown__field dropdown shadow">
+                    <div class="item" *ngFor="let executant of allExecutant; let i = index" (click)="setExecutant(i)">
+                        <img *ngIf="executant?.image.includes('http') || executant?.image.includes('https')" [src]="executant?.image" alt="User">
+                        <img *ngIf="!executant?.image.includes('http') || !executant?.image.includes('https')" [src]="'http://localhost:3001'+executant?.image" alt="User" >
+                        <span>{{executant?.fullname}}</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="setting">
+                <span class="setting__category">Label</span>
+                <span (click)="toggleLabel()" class="setting__value open-dropdown">{{currentLabel?.title ? currentLabel?.title : 'None'}}</span>
+                <div *ngIf="isLabel" class="dropdown__label dropdown shadow">
+                    <div class="item" *ngFor="let label of allLabel; let i = index" (click)="setLabel(i)">{{label?.title}}</div>
+                    <button (click)="toggleNewLabel()" class="open-dropdown">Create label</button>
+                </div>
+                <div *ngIf="isNewLabel" class="dropdown dropdown__new-label shadow">
+                    <form [formGroup]="labelForm" (ngSubmit)="createLabel()" class="open-dropdown">
+                        <span>Label name</span>
+                        <input formControlName="label" class="open-dropdown" type="text" name="label" placeholder="Enter label name">
+                        <input type="submit" style="display: none;" class="open-dropdown">
+                    </form>
+                </div>
+            </div>
+    
+            <div class="setting">
+                <span class="setting__category">Story point</span>
+                <input class="setting__value" type="number" [(ngModel)]="storyPoint"  [value]="task?.storyPoint ? task?.storyPoint : 0" (blur)="setStoryPoint()"/>
+            </div>
+    
+            <div class="setting">
+                <span class="setting__category">Sprint</span>
+                <span (click)="toggleSprint()" class="setting__value open-dropdown">{{currentSprint ? currentSprint.title : 'None'}}</span>
+                <div *ngIf="isSprint && isDataSprint" class="dropdown__field dropdown shadow">
+                    <div class="item" (click)="setSprint()">{{allSprint ? allSprint.title : 'None'}}</div>
+                </div>
+            </div>
+    
+            <div class="setting">
+                <span class="setting__category">Original estimate</span>
+                <input class="setting__value" type="number" [(ngModel)]="estimate" [value]="task?.approximate ? task?.approximate : 0" (blur)="setEstimate()"/>
+            </div>
+        </div>
+
+        <div class="info">
+            <p>Created {{setDate(this.task?.createdAt?.toString())}}</p>
+            <p>Updated {{setDate(this.task?.updatedAt?.toString())}}</p>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,89 @@
+@import '../../../assets/variable.scss';
+
+.task{
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 15px;
+    position: relative;
+
+    &__priority{
+        position: absolute;
+        width: 5px;
+        height: calc(100% - 14px);
+        top: 50%;
+        left: -1px;
+        transform: translateY(-50%);
+        border-radius: 1000px 0 0 1000px;
+
+        &-image{
+            width: 20px;
+        }
+    }
+
+    &__info{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__detail{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+
+        div{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+
+    &__label{
+        color: $black;
+        opacity: 70%;;
+    }
+
+    &__executant{
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        margin-left: 25px;
+    }
+}
+
+.not-sprint{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    p{
+        text-align: center;
+        margin: 5px 0;
+
+        &:first-child{
+            font-weight: 700;
+        }
+    }
+    .backlog{
+        text-decoration: none;
+        margin-top: 10px;
+    }
+}
+
+.dropdown{
+    &__detail{
+        top: 50%;
+        right: 15px;
+        transform: translate(0);
+        display: block;
+        width: 170px;
+
+        .item{
+            padding: 10px 0;
+            border-bottom: 1px solid #DFE1E6;
+            cursor: pointer;
+        }
+    }
+}

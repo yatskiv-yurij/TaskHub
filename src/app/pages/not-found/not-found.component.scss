@@ -1,0 +1,34 @@
+@import '../../../assets/variable.scss';
+.not-found{
+    &__wrapper{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    &__title{
+        font-size: 57px;
+        font-weight: 500;
+        margin: 50px 0 15px 0;
+    }
+
+    &__description{
+        font-size: 16px;
+        line-height: 24px;
+        width: 30%;
+        color: #44483D;
+    }
+
+    &__home{
+        padding: 14px 36px;
+        background-color: $main;
+        border-radius: 100px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 25px;
+    }
+}

@@ -1,0 +1,34 @@
+<div class="modal__sprint modal">
+    <svg (click)="onCloseModal()" class="modal__close" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 16L16 1M16 16L1 1" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg>
+
+    <div class="sprint__wrapper">
+        <div class="sprint__name-block">
+            <span>Sprint name</span>
+            <input type="text" class="sprint__name" placeholder="Enter sprint name" [(ngModel)]="sprintTitle">
+        </div>
+        <div class="sprint__date-block">
+            <span>Start date</span>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <input matInput [matDatepicker]="picker" placeholder="02/25/24" [(ngModel)]="sprintStartDate" [min]="minDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="sprint__date-block">
+            <span>End date</span>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <input matInput [matDatepicker]="picker1" placeholder="02/25/24" [(ngModel)]="sprintEndDate" [min]="minDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="sprint__goal-block">
+            <span>Sprint goal</span>
+            <textarea rows="5" class="sprint__goal" placeholder="Enter sprint goal" [(ngModel)]="sprintDescription"></textarea>
+        </div>
+        <button *ngIf="sprint" class="sprint__create btn btn__green" (click)="editSprint()">Edit</button>
+        <button *ngIf="!sprint" class="sprint__create btn btn__green" (click)="newSprint()">Create</button>
+    </div>
+</div>

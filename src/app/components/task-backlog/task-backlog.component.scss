@@ -1,0 +1,119 @@
+@import '../../../assets/variable.scss';
+
+.task{
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    grid-template-rows: auto;
+    border: 1px solid rgba(0, 0, 0, 30%);
+    border-radius: 10px;
+    padding: 10px 15px;
+    position: relative;
+
+    .left-column {
+        text-align: left; /* Вирівняти текст вліво */
+    }
+    
+    .center-column {
+        display: flex;
+        justify-content: center; /* Вирівнюємо вміст по горизонталі вправо */
+        align-items: center; /* Вирівняти текст по центру */
+    }
+    
+    .right-column {
+        display: flex;
+        justify-content: flex-end; /* Вирівнюємо вміст по горизонталі вправо */
+        align-items: center; /* Вирівняти текст вправо */
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+    }
+
+    &__title{
+        font-size: 16px;
+    }
+
+    &__field, &__label{
+        padding: 3px 15px;
+        background-color: lighten($color: $additional, $amount: 10%);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 10px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+    }
+
+
+    &__field{
+        margin-left: 50px;
+    }
+
+    &__priority{
+        background-color: transparent;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        line-height: 16px;
+        width: 100px;
+        cursor: pointer;
+        img{
+            width: 20px;
+            height: auto;
+            object-fit: cover;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+    }
+
+    &__executant{
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        margin-left: 25px;
+        cursor: pointer;
+    }
+
+    &__detail{
+        margin-left: 25px;
+    }
+
+    button{
+        pointer-events:all;
+    }
+
+
+    .dropdown{
+        &__detail{
+            top: 50px;
+            left: 41%;
+            transform: translate(0);
+            display: block;
+            width: 120px;
+
+            .item{
+                padding: 10px 0;
+                border-bottom: 1px solid #DFE1E6;
+                cursor: pointer;
+
+                svg{
+                    pointer-events: none;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        &__detail{
+            left: auto;
+            right: 15px;
+        }
+    }
+
+}

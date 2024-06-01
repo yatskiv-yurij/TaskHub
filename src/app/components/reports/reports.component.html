@@ -1,0 +1,58 @@
+<div class="reports">
+    <p class="reports__route">Projects / {{boardData?.[0]?.project?.title}} / {{boardData?.[0]?.title}}</p>
+    <h3 class="reports__title">Reports</h3>
+    <p class="reports__name">Burndown Chart</p>
+    <p class="reports__description">Track the total work remaining and project the likelihood of achieving the sprint goal. This helps your team manage its progress and respond accordingly.</p>
+    <div *ngIf="isData">
+        <div class="reports__select">
+            <span>Select method</span>
+            <button (click)="toggleMethod()" class="open-dropdown">
+                <span>{{currentMethod}}</span>
+                <svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div *ngIf="isMethod" class="dropdown__color dropdown shadow">
+                <div class="item" *ngFor="let method of allMethod; let i = index" (click)="setMethod(method, i)">{{method}}</div>
+            </div>
+        </div>
+    
+        <div *ngIf="currentMethod == 'Sprint'">
+            <div class="reports__select">
+                <span>Select sprint</span>
+                <button (click)="toggleSprint()" class="open-dropdown">
+                    <span>{{currentSprint?.title}}</span>
+                    <svg width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.00033 1L8.58366 7.51163L16.167 1" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div *ngIf="isSprint" class="dropdown__color dropdown shadow">
+                    <div class="item" *ngFor="let sprint of allSprints; let i = index" (click)="setSprint(sprint, i)">{{sprint?.title}}</div>
+                </div>
+            </div>
+        </div>
+    
+        <div *ngIf="currentMethod == 'Certain term'" class="reports__date">
+            <div class="date-block">
+                <span>Start date</span>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <input matInput [matDatepicker]="picker" placeholder="02/25/24" [(ngModel)]="selectStartDate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="date-block">
+                <span>End date</span>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <input matInput [matDatepicker]="picker1" placeholder="02/25/24" [(ngModel)]="selectEndDate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <button class="reports__apply btn" (click)="certainReport()">Apply</button>
+        </div>
+    </div>
+
+    <canvas #burndownChart id="burndownChart"></canvas>
+</div>

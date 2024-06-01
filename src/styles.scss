@@ -1,1 +1,355 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/variable.scss';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+*{
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: $basic;
+}
+
+.container{
+    max-width: 1200px;
+    padding: 0px 15px;
+    margin: 0 auto;
+}
+
+.logo{
+    text-decoration: none;
+    color: $black;
+
+    &:hover{
+        span{
+            color: $main;
+        }
+
+        svg path{
+            fill: $main
+        }
+    }
+    span{
+        margin-left: 5px;
+        font-size: 32px;
+        font-weight: 500;
+        transition: all .5s ease-in;
+    }
+
+    svg{
+        fill: $black; 
+        
+        path{
+            transition: all .5s ease-in;
+        }
+    }
+}
+
+.menu{
+    padding: 25px 0;
+    box-shadow: 0 4px 2px -2px rgba($color: #000000, $alpha: .07);
+
+    &__wrapper, &__list, .logo{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__list{
+        list-style: none;
+    }
+
+    &__item + &__item{
+        margin-left: 80px;
+    }
+
+    &__link{
+        text-decoration: none;
+        font-size: 16px;
+        color: $black;
+
+        &:hover{
+            color: $main
+        }
+    }
+
+    &__log-in{
+        display: block;
+        color: $main;
+        text-decoration: none;
+        padding: 5px 30px;
+        border: 1px solid $main;
+        border-radius: 10px;
+        transition: all .7s;
+
+        &:hover{
+            background-color: $main;
+            color: $basic;
+            font-weight: 700;
+            border: none
+        }
+    }
+
+    .user{
+        position: relative;
+        display: flex;
+
+
+        &__photo{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-left: 35px;
+            cursor: pointer;
+        }
+    }
+} 
+
+
+
+.dropdown{
+    background-color: #fff;
+    position: absolute;
+    transform: translateY(100%);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 10;
+
+    &__user{
+        right: 0;
+        bottom: 0;
+        width: 170px;
+        .menu__list{
+            flex-direction: column;
+            text-align: left;
+            list-style: none;
+        }
+    
+        .menu__item{
+            margin: 0 !important;
+            padding: 10px 0;
+            cursor: pointer;
+    
+            &:first-child{
+                border-bottom: 1px solid #DFE1E6;
+            }
+        }
+    
+        .log-out{
+            background-color: transparent;
+            border: none;
+            outline: none;
+            padding: 0px 40px;
+            width: 100%;
+            cursor: pointer;
+        }
+    }
+}
+
+
+.shadow{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 
+                  -2px -2px 5px rgba(0, 0, 0, 0.2), 
+                  2px -2px 5px rgba(0, 0, 0, 0.2), 
+                  -2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.auth{
+    &-btn{
+        display: block;
+        height: 40px;
+        width: 40px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #C1C7D0;
+        border-radius: 5px;
+        text-decoration: none;
+        outline: none;
+        cursor: pointer;
+
+        span{
+            margin-left: 4px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #42526E;
+        }
+    }
+}
+
+.btn{
+    background-color: $main;
+    padding: 7px 10px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &__green{
+        background-color: $additional;
+    }
+
+    &__red{
+        background-color: #FC3903;
+    }
+
+    svg{
+        pointer-events: none;
+    }
+
+    &__small, &__edit{
+        padding: 10px 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__edit{
+        padding: 7px;
+        border-radius: 5px;
+    }
+}
+
+app-task-backlog{
+    .task{
+        background-color: #fff;
+    }
+    &:nth-child(even) .task{
+        background-color: $basic;
+    }
+}
+
+.pagination{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 6px;
+    
+    &__btn{
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        border: 1px solid #DFE3E8;
+        outline: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover{
+            border: 1px solid lighten($main, 20%);
+            color: lighten($main, 20%);
+
+            svg{
+                path{
+                    fill:lighten($main, 20%);
+                }
+            }
+        }
+
+        &.active{
+            border: 1px solid $main;
+            color: $main;
+        }
+
+        &.disable{
+            border: none;
+            width: 34px;
+            height: 34px;
+            background-color: #919EAB;
+
+            &:hover{
+                border: none;
+                color: none;
+
+                svg{
+                    path{
+                        fill: #C4CDD5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 50px 25px 25px;
+    border-radius: 20px;
+    display: block;
+    z-index: 3;
+    
+    &__issue{
+        width: 1245px;
+        height: 700px;
+    }
+
+    &__sprint, &__task{
+        width: 430px;
+    }
+
+    &__task{
+        max-height: 710px;
+        overflow-y: auto;
+    }
+
+    &__close{
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        cursor: pointer;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Затемнення */
+    display: none;
+    z-index: 2;
+
+    &.active {
+        display: block;
+    }
+}
+
+.error{
+    text-align-last: left;
+    span{
+        display: block;
+        margin-top: -5px;
+        margin-bottom: 5px;
+        padding: 0;
+        font-size: 12px;
+        color: #FC3903;
+    }
+}
+
+.NgxEditor, .NgxEditor__Content{
+    padding: 5px 10px !important;
+}
+

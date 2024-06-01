@@ -1,0 +1,224 @@
+@import '../../../assets/variable.scss';
+.settings{
+    &__route{
+        font-size: 14px;
+        color: $black;
+    }
+
+    &__title{
+        font-size: 22px;
+        font-weight: 700;
+        margin: 20px 0;
+        color: $black;
+    }
+
+    &__name-block, &__project-block, &__method-block{
+        margin-bottom: 20px;
+        position: relative;
+        span{
+            font-size: 12px;
+            color: lighten($black, 50%);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, button{
+            width: 20%;
+            padding: 5px 12px;
+            border: 1px solid lighten($black, 50%);
+            border-radius: 20px;
+            outline: none;
+            background-color: #fff;
+        }
+
+        button{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            span,svg{
+                pointer-events: none;
+            }
+
+            span{
+                color: $black;
+                font-size: 14px;
+                margin-top: 3px;
+            }
+        }
+
+        .dropdown{
+            width: 15%;
+            top: 105%;
+            transform: translate(0);
+
+            .item{
+                padding: 10px 0;
+                border-bottom: 1px solid #DFE1E6;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+    
+                svg{
+                    pointer-events: none;
+                    margin-right: 5px;
+                    margin-top: 3px;
+                }
+    
+                img{
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 100%;
+                    pointer-events: none;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    &__subtitle{
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    &__description{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    &__color-picker{
+        width: 25%;
+        margin-bottom: 20px;
+        .item{
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid lighten($black, 50%);
+            padding: 10px 0;
+        }
+
+        span{
+            margin-left: 30px;
+        }
+    }
+
+    &__columns-block{
+        display: flex;
+        align-items: start;
+        width: 100%;
+        gap: 30px;
+    }
+
+    &__columns{
+        display: flex;
+        gap: 30px;
+        margin-bottom: 20px;
+        .item{
+            width: 220px;
+            border: 1px solid lighten($black, 50%);
+            border-radius: 10px;
+            padding: 15px 8px;
+            background-color: #fff;
+            border-top: 7px solid #758195;
+
+            div{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .column{ 
+                
+                &__title{
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+
+                &__count{
+                    margin-top: 15px;
+                    .count{
+                        display: block;
+                    }
+                    span{
+                        font-size: 12px;
+                        color: lighten($black, 50%);
+                        display: block;
+                    }
+
+                    input{
+                        width: 90%;
+                        padding: 10px 8px;
+                        border: 1px solid lighten($black, 50%);
+                        border-radius: 3px;
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &__new-column{
+        position: relative;
+    }
+
+    &__delete{
+        display: flex;
+        align-items: center;
+
+        svg{
+            pointer-events: none;
+            margin-right: 5px;
+        }
+    }
+}
+
+.dropdown{
+    &__column{
+        width: 200px;
+        top: 120%;
+        transform: translate(0);
+        input, button{
+            width: 100%;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid lighten($black, 50%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            margin-bottom: 10px;
+
+            span, svg{
+                pointer-events: none;
+            }
+        }
+
+        .save{
+            background-color: $main;
+            display: flex;
+            justify-content: center;
+        }
+
+
+    }
+    &__status{
+        transform: translate(0);
+        width: calc(100% - 20px);
+
+        .item{
+            padding: 7px 0;
+            border-bottom: 1px solid #DFE1E6;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    }
+}
+
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: lighten($black, 60%);
+    margin-bottom: 20px;
+}
