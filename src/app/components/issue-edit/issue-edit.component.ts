@@ -98,6 +98,29 @@ export class IssueEditComponent{
       this.boardService.setDataChange()
     }
    
+    if(this.allExecutant.length === 0){
+      this.board$.subscribe(
+        (res_br: any) => {
+          const board = res_br?.find((item:any)=> item._id == this.boardId)
+          console.log(board?.participants)
+          board?.participants.forEach(
+            (item:any) => {
+              console.log(item)
+              this.authService.getUserInfo(item.email).subscribe(
+                (res:any)=> {
+                  if(res?.[0]._id == this.task.performer){
+                    this.currentExecutant = res[0];
+                  }else{
+                    this.allExecutant.push(res[0]);
+                  }
+                }
+              )
+            }
+          )
+        }
+      )
+      console.log(this.allExecutant)
+    }
 
     this.taskService.getOne(this.taskId).subscribe(
       
@@ -122,25 +145,7 @@ export class IssueEditComponent{
           }
         )
 
-        this.board$.subscribe(
-          (res_br: any) => {
-            const board = res_br?.find((item:any)=> item._id == this.boardId)
-            board?.participants.forEach(
-              (item:any) => {
-                this.authService.getUserInfo(item.email).subscribe(
-                  (res:any)=> {
-                    if(res?.[0]._id == this.task.performer){
-                      this.currentExecutant = res[0];
-                    }else{
-                      this.allExecutant.push(res[0]);
-                    }
-                  }
-                )
-              }
-            )
-          }
-        )
-
+        
         this.boardService.getLabel(this.boardId).subscribe(
           (res_lb: any) => {
             this.allLabel = res_lb.filter((item: any) => item._id != this.task.label)
