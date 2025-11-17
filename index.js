@@ -15,7 +15,6 @@ import commentSocket from './src/socket/commentSocket.js';
 
 const app = express();
 const server = http.createServer(app); 
-app.use(cors());
 const io = new socketIo(server, {
     cors: {
       origin: '*',
@@ -53,6 +52,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
