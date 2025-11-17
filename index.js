@@ -28,6 +28,7 @@ const io = new socketIo(server, {
 });
 
 app.use(express.json({ limit: '25mb' }));
+app.options('*', cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -57,6 +58,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
