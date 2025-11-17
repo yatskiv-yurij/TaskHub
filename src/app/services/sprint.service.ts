@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SprintService {
-  private apiUrl = 'https://taskhub-6upa.onrender.com/sprint';
+  private apiUrl = 'https://taskhub-server-g76s.onrender.com/taskhub/sprint';
   private dataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private http: HttpClient) { }
