@@ -15,6 +15,21 @@ import commentSocket from './src/socket/commentSocket.js';
 
 const app = express();
 const server = http.createServer(app); 
+
+const corsOptions = {
+  origin: [
+    'http://localhost:4200',            // для локальної розробки
+    'https://taskhub-wf23.onrender.com',
+    'https://taskhub-production-983f.up.railway.app'// продакшн фронтенд
+  ],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 const io = new socketIo(server, {
     cors: {
       origin: '*',
@@ -52,6 +67,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
