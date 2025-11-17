@@ -12,31 +12,31 @@ export class TasksService {
 
   getTasks(board: any): Observable<Task[]> {
     const params = new HttpParams().set('boardId', board);
-    return this.http.get<Task[]>('http://localhost:3001/taskhub/tasks/get-all/', { params });
+    return this.http.get<Task[]>('https://taskhub-server-g76s.onrender.com/taskhub/tasks/get-all/', { params });
   }
 
   getLatest(tasks: any): Observable<any> {
     const params = new HttpParams().set('tasksId', tasks);
-    return this.http.get<any>('http://localhost:3001/taskhub/tasks/get-work/', { params });
+    return this.http.get<any>('https://taskhub-server-g76s.onrender.com/taskhub/tasks/get-work/', { params });
   }
 
   getOne(tasks: any): Observable<any> {
     const params = new HttpParams().set('tasksId', tasks);
-    return this.http.get<any>('http://localhost:3001/taskhub/tasks/get-one/', { params });
+    return this.http.get<any>('https://taskhub-server-g76s.onrender.com/taskhub/tasks/get-one/', { params });
   }
 
   getSearch(title: any): Observable<any> {
     const params = new HttpParams().set('title', title);
-    return this.http.get<any>('http://localhost:3001/taskhub/tasks/get-search/', { params });
+    return this.http.get<any>('https://taskhub-server-g76s.onrender.com/taskhub/tasks/get-search/', { params });
   }
 
   getPriority(): Observable<any> {
-    return this.http.get<any>('http://localhost:3001/taskhub/priority/get-all/');
+    return this.http.get<any>('https://taskhub-server-g76s.onrender.com/taskhub/priority/get-all/');
   }
 
   getComments(tasks: any): Observable<any> {
     const params = new HttpParams().set('tasks', tasks);
-    return this.http.get<any>('http://localhost:3001/taskhub/comments/get-all/', { params });
+    return this.http.get<any>('https://taskhub-server-g76s.onrender.com/taskhub/comments/get-all/', { params });
   }
 
   // getFile(file:any){
@@ -44,24 +44,24 @@ export class TasksService {
   // }
 
   createAttachment(tasks: any, link: any, name: any, extension: any){
-    return this.http.post<any>(`http://localhost:3001/taskhub/attachment/create/`, {tasks, link, name, extension});
+    return this.http.post<any>(`v/attachment/create/`, {tasks, link, name, extension});
 
   }
   getAttachment(taskId: any){
     const params = new HttpParams().set('tasks', taskId);
-    return this.http.get<any>('http://localhost:3001/taskhub/attachment/get-all/', { params });
+    return this.http.get<any>('https://taskhub-server-g76s.onrender.com/taskhub/attachment/get-all/', { params });
   }
 
   deleteAttachment(attachmentId: any){
-    return this.http.delete<any>(`http://localhost:3001/taskhub/attachment/delete/${attachmentId}`);
+    return this.http.delete<any>(`https://taskhub-server-g76s.onrender.com/taskhub/attachment/delete/${attachmentId}`);
   }
 
   deleteFile(files: any){
     const params = new HttpParams().set('files', files);
-    return this.http.delete<any>(`http://localhost:3001/taskhub/files/upload/`, { params });
+    return this.http.delete<any>(`https://taskhub-server-g76s.onrender.com/taskhub/files/upload/`, { params });
   }
   
   saveFile(files: FormData){
-    return this.http.post<any>(`http://localhost:3001/taskhub/files/upload/`, files);
+    return this.http.post<any>(`https://taskhub-server-g76s.onrender.com/taskhub/files/upload/`, files);
   }
 }
