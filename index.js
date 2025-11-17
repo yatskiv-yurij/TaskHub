@@ -15,7 +15,11 @@ import commentSocket from './src/socket/commentSocket.js';
 
 const app = express();
 const server = http.createServer(app); 
-
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
 const corsOptions = {
   origin: [
     'http://localhost:4200',            // для локальної розробки
@@ -67,6 +71,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
