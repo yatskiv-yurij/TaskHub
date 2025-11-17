@@ -63,7 +63,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-const config: SocketIoConfig = { url: 'http://localhost:3001/', options: {} };
+const config: SocketIoConfig = { url: 'https://taskhub-server-g76s.onrender.com', options: {} };
 
 @NgModule({
   declarations: [
