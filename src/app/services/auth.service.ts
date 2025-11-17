@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3001/taskhub/user';
+  private apiUrl = 'https://taskhub-production-daa9.up.railway.app/user';
 
   constructor(
     private http: HttpClient,
