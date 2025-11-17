@@ -7,7 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class BoardService {
   private dataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private apiUrl = 'http://localhost:3001/taskhub/board';
+  private apiUrl = 'https://taskhub-server-g76s.onrender.com/taskhub/board';
 
   constructor(private http: HttpClient) { }
 
@@ -47,11 +47,11 @@ export class BoardService {
 
   getLabel(board: any) {
     const params = new HttpParams().set('board', board);
-    return this.http.get<any>(`http://localhost:3001/taskhub/labels/get-all`, { params });
+    return this.http.get<any>(`https://taskhub-server-g76s.onrender.com/taskhub/labels/get-all`, { params });
   }
 
   createLabel(board: any, title: any){
-    return this.http.post<any>(`http://localhost:3001/taskhub/labels/create`, { board, title });
+    return this.http.post<any>(`https://taskhub-server-g76s.onrender.com/taskhub/labels/create`, { board, title });
   }
   
 
