@@ -7,7 +7,7 @@ import * as CryptoJS from 'crypto-js';
   providedIn: 'root'
 })
 export class SendMailService {
-  private apiUrl = 'http://localhost:3001/taskhub';
+  private apiUrl = 'https://taskhub-server-g76s.onrender.com/taskhub';
 
   constructor(
     private http: HttpClient,
@@ -20,7 +20,7 @@ export class SendMailService {
   sendMail(to: any, subject: any, data: any): Observable<any>{
     const hash = CryptoJS.AES.encrypt(data._id, 'TaskHub').toString();
     const html = `<body style="background-color: #333; color: #fff"; font-size: 18px>
-          <div style="text-align: center;"><br/><a href='http://localhost:4200/' style="font-size: 30px;
+          <div style="text-align: center;"><br/><a href='https://taskhub-6upa.onrender.com/' style="font-size: 30px;
           padding: 20px 0; text-decoration: none; color: #fff";">
           
             TaskHub
@@ -34,7 +34,7 @@ export class SendMailService {
         <br/>
         <p style="font-size: 16px">We've received a request to set a new password for this Atlassian account: <b>${to}</b>.</p>
         <br/>
-        <a href='http://localhost:4200/auth/change-password/${hash}' style='padding: 10px 25px;
+        <a href='https://taskhub-6upa.onrender.com/auth/change-password/${hash}' style='padding: 10px 25px;
         background-color: #9B59B6;
         border: none;
         outline: none;
@@ -53,7 +53,7 @@ export class SendMailService {
 
   sendMailInvitation(to: any, subject: any, data: any): Observable<any>{
     const html = `<body style="background-color: #333; color: #fff"; font-size: 18px>
-          <div style="text-align: center;"><br/><a href='http://localhost:4200/' style="font-size: 30px;
+          <div style="text-align: center;"><br/><a href='https://taskhub-6upa.onrender.com/' style="font-size: 30px;
           padding: 20px 0; text-decoration: none; color: #fff";">
           
             TaskHub
@@ -67,7 +67,7 @@ export class SendMailService {
         <br/>
         <p style="font-size: 20px">${data.board}</p>
         <br/>
-        <a href='http://localhost:4200/dashboard/${data.link}' style='padding: 10px 25px;
+        <a href='https://taskhub-6upa.onrender.com/dashboard/${data.link}' style='padding: 10px 25px;
         background-color: #9B59B6;
         border: none;
         outline: none;
