@@ -21,14 +21,12 @@ app.use((req, res, next) => {
   next();
 });
 const corsOptions = {
-  origin: [
-    'http://localhost:4200',            // для локальної розробки
-    'https://taskhub-wf23.onrender.com',
-    'https://taskhub-production-983f.up.railway.app'// продакшн фронтенд
-  ],
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization'],
-  credentials: true
+  origin: "https://taskhub-6upa.onrender.com", 
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
@@ -71,6 +69,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
