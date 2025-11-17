@@ -15,6 +15,11 @@ import commentSocket from './src/socket/commentSocket.js';
 
 const app = express();
 const server = http.createServer(app); 
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  credentials: true
+}));
 const io = new socketIo(server, {
     cors: {
       origin: '*',
@@ -23,7 +28,6 @@ const io = new socketIo(server, {
 });
 
 app.use(express.json({ limit: '25mb' }));
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -53,6 +57,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
