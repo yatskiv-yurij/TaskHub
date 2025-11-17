@@ -13,13 +13,15 @@ import router from './src/routes/index.js';
 import taskSocket from './src/socket/taskSocket.js';
 import commentSocket from './src/socket/commentSocket.js';
 
-const app = express();
-const server = http.createServer(app); 
-app.use(cors({
+const corsOptions = {
   origin: 'http://localhost:4200',
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   credentials: true
-}));
+};
+
+const app = express();
+const server = http.createServer(app); 
+app.use(cors(corsOptions));
 const io = new socketIo(server, {
     cors: {
       origin: '*',
@@ -58,6 +60,7 @@ async function startApp() {
     }
 }
 startApp();
+
 
 
 
