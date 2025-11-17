@@ -132,7 +132,7 @@ export class AuthService {
   }
 
   saveFile(files: FormData){
-    return this.http.post<any>(`http://localhost:3001/taskhub/files/upload/`, files);
+    return this.http.post<any>(`https://taskhub-server-g76s.onrender.com/taskhub/files/upload/`, files);
   }
 
   updateUser(token: any, data: any){
