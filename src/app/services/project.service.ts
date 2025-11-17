@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://localhost:3001/taskhub/projects';
+  private apiUrl = 'https://taskhub-server-g76s.onrender.com/taskhub/projects';
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class ProjectService {
   }
 
   saveFile(files: FormData){
-    return this.http.post<any>(`http://localhost:3001/taskhub/files/upload/`, files);
+    return this.http.post<any>(`https://taskhub-server-g76s.onrender.com/taskhub/files/upload/`, files);
   }
 
   deleteProject(projectId: any){
